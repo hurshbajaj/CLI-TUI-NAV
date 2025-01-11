@@ -106,6 +106,7 @@ fn main() ->Result<(), Box<dyn std::error::Error> >
 
     outPost.execute(terminal::Clear(terminal::ClearType::All)).expect("");
     terminal::disable_raw_mode().unwrap();
+    outPost.execute(cursor::MoveTo(0, 0));
     outPost.execute(cursor::Show).expect("");
 
     // if changeDir{
