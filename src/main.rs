@@ -1,3 +1,5 @@
+mod config;
+
 use std::{io, env, fs, path::PathBuf, time::Duration, path};
 use std::path::Path;
 use crossterm::*;
@@ -28,7 +30,7 @@ fn main() ->Result<(), Box<dyn std::error::Error> >
     let backend = CrosstermBackend::new(&mut out);
     let mut terminal = Terminal::new(backend)?;
 
-    let mut focusDir = PathBuf::from("/mnt/c/Users/Hursh Bajaj/Desktop");
+    let mut focusDir = PathBuf::from(config::get_config().get("spawn").unwrap().to_string());
     let mut entries:Vec<ListItem> = changeEntries(focusDir.clone())?;
     'outer:loop{
         if breakNow{
